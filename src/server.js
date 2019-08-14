@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 const server = express()
 
 //body parser serve para tratar os params no body
-server.use(bodyParser.urlencoded())
+server.use(bodyParser.urlencoded({ extended: true }))
 server.use(routes)
 
 server.listen(port)

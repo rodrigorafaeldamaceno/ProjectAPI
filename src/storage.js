@@ -12,8 +12,14 @@ const salvarProdutos = produto => {
     return produto
 }
 
+const excluirProduto = id => {
+    const produto = produtos[id]
+    delete produtos[id]
+    return produto
+}
+
 const getProduto = id => produtos[id] || {}
 
 const getProdutos = () => Object.values(produtos)
 
-module.exports = { salvarProdutos, getProduto, getProdutos }
+module.exports = { salvarProdutos, excluirProduto, getProduto, getProdutos }
