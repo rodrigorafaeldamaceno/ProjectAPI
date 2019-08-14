@@ -15,7 +15,7 @@ routes.post('/produtos', (req, res, next) => {
     console.log(req.body)
     
     const produto = storage.salvarProdutos({
-        nome: req.body.name,
+        nome: req.body.nome,
         preco: req.body.preco,
     })
 
