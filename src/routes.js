@@ -1,43 +1,19 @@
-const storage = require('./storage')
 const express = require('express')
+const productController = require('./controller/productController')
 const routes = express.Router()
 
-
-
-routes.get('/produtos', (req, res) => {
-    res.send(storage.getProdutos())
+routes.get('/', (req, res) => {
+    return res.json({ status: 'Online' })
 })
 
-routes.get('/produtos/:id', (req, res) => {
-    res.send(storage.getProduto(req.params.id))
-})
+routes.get('/produtos', productController.index)
 
-routes.post('/produtos', (req, res) => {
-    console.log(req.body)
+routes.get('/produtos/:id', productController.show)
 
-    const produto = storage.salvarProdutos({
-        nome: req.body.nome,
-        preco: req.body.preco,
-    })
+routes.post('/produtos', productController.store)
 
-    res.send(produto)
-})
+routes.put('/produtos/:id', productController.update)
 
-routes.put('/produtos/:id', (req, res) => {
-    const produto = storage.salvarProdutos({
-        id: req.params.id,
-        nome: req.body.nome,
-        preco: req.body.preco
-    })
-
-    res.send(produto)
-})
-
-routes.delete('/produtos/:id', (req, res) => {
-    const produto = storage.excluirProduto(req.params.id)
-    res.send(produto)
-})
-
-
+routes.delete('/produtos/:id', productController.delete)
 
 module.exports = routes
